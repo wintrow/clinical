@@ -9,6 +9,12 @@ const TOOLS = [
     description: "搜尋帳碼、勾選後自動算出 ABB／AAB 最高點數組合。",
     href: "tools/surgery-billing/index.html",
   },
+  {
+    id: "scores",
+    name: "臨床分數",
+    description: "GCS、ICH、H&H、ISS、APACHE、mRS、GOS 等常用量表。",
+    href: "tools/scores/index.html",
+  },
 ];
 
 const toolList = document.getElementById("tool-list");

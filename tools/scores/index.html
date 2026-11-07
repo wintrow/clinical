@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>臨床分數 · 診間</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600&family=Outfit:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../styles.css" />
+    <link rel="stylesheet" href="scores.css" />
+  </head>
+  <body class="tool-page">
+    <div class="atmosphere" aria-hidden="true">
+      <div class="atmosphere__wash"></div>
+      <div class="atmosphere__grid"></div>
+      <div class="atmosphere__orb atmosphere__orb--a"></div>
+      <div class="atmosphere__orb atmosphere__orb--b"></div>
+    </div>
+
+    <header class="topbar">
+      <a class="topbar__brand" href="../../index.html">診間</a>
+      <nav class="topbar__nav" aria-label="主要導覽">
+        <a href="../../index.html#tools">工具</a>
+        <a href="../surgery-billing/index.html">記帳</a>
+        <a href="./index.html" aria-current="page">分數</a>
+      </nav>
+    </header>
+
+    <main class="scores" id="app">
+      <header class="scores__intro" id="hub-view">
+        <h1>臨床分數</h1>
+        <p class="scores__lead">神經外科、創傷與加護常用量表。點選後直接計算。</p>
+
+        <label class="search">
+          <span class="visually-hidden">搜尋分數</span>
+          <input id="search" type="search" placeholder="搜尋 GCS、ICH、ISS…" autocomplete="off" />
+        </label>
+
+        <div class="filters" id="filters" role="group" aria-label="分類"></div>
+        <ul class="score-list" id="score-list"></ul>
+      </header>
+
+      <section class="calc" id="calc-view" hidden>
+        <button type="button" class="back-btn" id="back-btn">← 全部分數</button>
+        <header class="calc__head">
+          <p class="calc__cat" id="calc-cat"></p>
+          <h2 id="calc-title"></h2>
+          <p class="calc__desc" id="calc-desc"></p>
+        </header>
+        <form class="calc__form" id="calc-form"></form>
+        <aside class="result" id="result" aria-live="polite">
+          <p class="result__label">結果</p>
+          <p class="result__score" id="result-score">—</p>
+          <p class="result__detail" id="result-detail"></p>
+          <p class="result__note" id="result-note"></p>
+        </aside>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>僅供臨床參考，請依實際指引與判斷使用。</p>
+    </footer>
+
+    <script src="scores.js"></script>
+  </body>
+</html>
