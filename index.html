@@ -28,6 +28,8 @@
       <a class="topbar__brand" href="#top">診間</a>
       <nav class="topbar__nav" aria-label="主要導覽">
         <a href="#tools">工具</a>
+        <a href="tools/surgery-billing/index.html">記帳</a>
+        <a href="tools/scores/index.html">分數</a>
       </nav>
     </header>
 
@@ -37,7 +39,7 @@
           <p class="hero__brand">診間</p>
           <h1 id="hero-title">臨床日常所需，集中一處。</h1>
           <p class="hero__lead">
-            計算、量表與快速參考。之後會逐項加入你真正會用的工具。
+            手術記帳、臨床分數與快速參考，集中一處。
           </p>
           <div class="hero__actions">
             <a class="btn btn--primary" href="#tools">瀏覽工具</a>
@@ -63,7 +65,7 @@
             <div class="pulse-panel__meta">
               <span>ready</span>
               <span class="pulse-panel__dot"></span>
-              <span>0 tools</span>
+              <span>2 tools</span>
             </div>
           </div>
         </aside>
@@ -75,9 +77,24 @@
           <p>個人臨床小工具。之後還會陸續加入。</p>
         </div>
 
-        <ul class="tool-list" id="tool-list" hidden></ul>
+        <ul class="tool-list" id="tool-list">
+          <li>
+            <a class="tool-link" href="tools/surgery-billing/index.html">
+              <span class="tool-link__name">手術記帳</span>
+              <span class="tool-link__arrow" aria-hidden="true">→</span>
+              <span class="tool-link__desc">搜尋帳碼、勾選後自動算出 ABB／AAB 最高點數組合。</span>
+            </a>
+          </li>
+          <li>
+            <a class="tool-link" href="tools/scores/index.html">
+              <span class="tool-link__name">臨床分數</span>
+              <span class="tool-link__arrow" aria-hidden="true">→</span>
+              <span class="tool-link__desc">GCS、ICH、H&amp;H、ISS、APACHE、mRS、GOS 等常用量表。</span>
+            </a>
+          </li>
+        </ul>
 
-        <div class="empty" id="empty-state">
+        <div class="empty" id="empty-state" hidden>
           <p class="empty__label">等待第一個工具</p>
           <p class="empty__hint">告訴我名稱、用途與輸入輸出，即可開始。</p>
         </div>
@@ -88,6 +105,6 @@
       <p>診間 · 個人臨床小工具</p>
     </footer>
 
-    <script src="app.js"></script>
+    <script src="app.js?v=2"></script>
   </body>
 </html>

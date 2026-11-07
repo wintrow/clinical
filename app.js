@@ -33,10 +33,12 @@ function renderTools() {
     return;
   }
 
+  // Keep static HTML links if already present; only rebuild when empty.
   emptyState.hidden = true;
   toolList.hidden = false;
-  toolList.innerHTML = TOOLS.map(
-    (tool) => `
+  if (!toolList.children.length) {
+    toolList.innerHTML = TOOLS.map(
+      (tool) => `
       <li>
         <a class="tool-link" href="${tool.href}">
           <span class="tool-link__name">${tool.name}</span>
@@ -45,7 +47,8 @@ function renderTools() {
         </a>
       </li>
     `
-  ).join("");
+    ).join("");
+  }
 
   if (toolCountEl) {
     toolCountEl.textContent = `${TOOLS.length} tool${TOOLS.length > 1 ? "s" : ""}`;
