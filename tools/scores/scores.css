@@ -231,7 +231,8 @@
   line-height: 1.4;
 }
 
-.field input[type="number"] {
+.field input[type="number"],
+.field-select {
   width: 100%;
   min-height: 2.8rem;
   padding: 0 0.8rem;
@@ -240,7 +241,11 @@
   background: rgba(255, 255, 255, 0.9);
   color: var(--ink);
   font: inherit;
-  font-size: 1.05rem;
+  font-size: 0.95rem;
+}
+
+.field-select {
+  padding-right: 2rem;
 }
 
 .result {

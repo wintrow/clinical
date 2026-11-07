@@ -506,28 +506,63 @@ const SCORES = [
     name: "ISS",
     nameZh: "Injury Severity Score",
     category: "創傷",
-    blurb: "六大區域 AIS 最高分，取前三名平方和（最高 75）。",
+    blurb: "依六大解剖區選最重 AIS 細項；取最高三區平方和。含頭頸／臉／胸／腹／四肢／外觀細項。",
     fields: [
-      { key: "head", label: "Head / neck AIS", type: "choice", options: aisOptions() },
-      { key: "face", label: "Face AIS", type: "choice", options: aisOptions() },
-      { key: "chest", label: "Chest AIS", type: "choice", options: aisOptions() },
-      { key: "abdomen", label: "Abdomen AIS", type: "choice", options: aisOptions() },
-      { key: "extremity", label: "Extremity / pelvis AIS", type: "choice", options: aisOptions() },
-      { key: "external", label: "External AIS", type: "choice", options: aisOptions() },
+      {
+        key: "dead",
+        label: "到院前狀態",
+        type: "choice",
+        options: [
+          opt("no", "到院時仍存活", "依下方六區計算"),
+          opt("yes", "到院前死亡", "ISS 一律 75"),
+        ],
+      },
+      ...(window.ISS_REGIONS || []).map((region) => ({
+        key: region.key,
+        label: region.label,
+        hint: region.hint,
+        type: "select-groups",
+        groups: region.groups,
+      })),
     ],
     compute(v) {
       const keys = ["head", "face", "chest", "abdomen", "extremity", "external"];
+      const labels = {
+        head: "頭頸",
+        face: "臉",
+        chest: "胸",
+        abdomen: "腹",
+        extremity: "四肢",
+        external: "外觀",
+      };
+      if (pick(v, "dead") === "yes") {
+        return {
+          score: "75",
+          detail: "到院前死亡 → ISS=75",
+          note: "ISS <9 輕度；9–15 中度；≥16 嚴重外傷（可申請重大傷病卡）。",
+        };
+      }
       const vals = keys.map((k) => num(pick(v, k)));
       if (vals.some((x) => x == null)) return null;
       if (vals.some((x) => x === 6)) {
-        return { score: "75", detail: "任一區域 AIS=6 → ISS 定為 75", note: "" };
+        return {
+          score: "75",
+          detail: "任一區域 AIS=6 → ISS=75",
+          note: "ISS <9 輕度；9–15 中度；≥16 嚴重外傷（可申請重大傷病卡）。",
+        };
       }
-      const top = [...vals].sort((a, b) => b - a).slice(0, 3);
-      const total = top.reduce((s, x) => s + x * x, 0);
+      const ranked = keys
+        .map((k, i) => ({ k, label: labels[k], ais: vals[i] }))
+        .sort((a, b) => b.ais - a.ais);
+      const top = ranked.slice(0, 3);
+      const total = top.reduce((s, x) => s + x.ais * x.ais, 0);
+      let band = "輕度外傷（ISS <9）";
+      if (total >= 16) band = "嚴重外傷（ISS ≥16，可申請重大傷病卡）";
+      else if (total >= 9) band = "中度外傷（ISS 9–15）";
       return {
         score: String(total),
-        detail: `取 ${top.join(", ")} 的平方和`,
-        note: "ISS >15 常作為重大創傷分界。",
+        detail: `${band}。取 ${top.map((x) => `${x.label}${x.ais}²`).join(" + ")} = ${total}`,
+        note: "每區只取最高 AIS；全部分數只選最高三區。約 50% 死亡率參考：15–44 歲 ISS≈40；45–64≈29；≥65≈20。",
       };
     },
   },
@@ -800,18 +835,6 @@ const SCORES = [
   },
 ];
 
-function aisOptions() {
-  return [
-    opt(0, "0", "No injury"),
-    opt(1, "1", "Minor"),
-    opt(2, "2", "Moderate"),
-    opt(3, "3", "Serious"),
-    opt(4, "4", "Severe"),
-    opt(5, "5", "Critical"),
-    opt(6, "6", "Maximal / currently untreatable"),
-  ];
-}
-
 /* ---- APACHE II helpers ---- */
 function bandScore(value, rules) {
   for (const [pts, ok] of rules) if (ok(value)) return pts;
@@ -1014,6 +1037,30 @@ function openScore(id) {
               step="${field.step ?? "any"}" />
           </div>`;
       }
+      if (field.type === "select-groups") {
+        const groups = field.groups || [];
+        return `
+          <div class="field">
+            <label class="field__label" for="f-${field.key}">${field.label}</label>
+            ${field.hint ? `<span class="field__hint">${field.hint}</span>` : ""}
+            <select class="field-select" id="f-${field.key}" name="${field.key}">
+              <option value="">請選擇該區最重損傷…</option>
+              ${groups
+                .map(
+                  (g) => `
+                <optgroup label="${g.name}">
+                  ${(g.options || [])
+                    .map(
+                      (o) =>
+                        `<option value="${o.value}">AIS ${o.title} · ${escapeHtml(o.desc)}</option>`
+                    )
+                    .join("")}
+                </optgroup>`
+                )
+                .join("")}
+            </select>
+          </div>`;
+      }
       return `
         <fieldset class="field">
           <legend class="field__label">${field.label}</legend>
@@ -1042,12 +1089,20 @@ function closeScore() {
   els.hub.hidden = false;
 }
 
+function escapeHtml(text) {
+  return String(text || "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
 function readForm() {
   const score = SCORES.find((s) => s.id === state.activeId);
   if (!score) return {};
   const values = {};
   for (const field of score.fields) {
-    if (field.type === "number") {
+    if (field.type === "number" || field.type === "select-groups") {
       const input = els.form.querySelector(`[name="${field.key}"]`);
       values[field.key] = input ? input.value : "";
     } else {
