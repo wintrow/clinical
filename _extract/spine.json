@@ -1,0 +1,166 @@
+{
+  "paragraphs": [
+    "Spine手術帳碼  (2021/7/1-)",
+    "2019/12/17",
+    "TLIF:",
+    "83046B Posterior fusion with instrument <= 6",
+    "83043B Anterior fusion without instrument <= 4",
+    "83002C Laminectomy <= 2 seg / 83003C Laminectomy > 2 seg",
+    "Lumbar HIVD:",
+    "83024C Lumbar discectomy",
+    "83002C Laminectomy <= 2 seg",
+    "紀錄註明有lateral recess stenosis，需做laminectomy減壓",
+    "DTL:",
+    "83045B Posterior fusion without instrument",
+    "CDA:",
+    "83022C Cervical discectomy"
+  ],
+  "tables": [
+    [
+      [
+        "83002C",
+        "椎弓切除術（減壓）－ 二節以內",
+        "Laminectomy <= 2 seg",
+        "11966"
+      ],
+      [
+        "83003C",
+        "椎弓切除術（減壓）－ 超過二節",
+        "Laminectomy > 2 seg",
+        "17366"
+      ],
+      [
+        "83022C",
+        "椎間盤切除術－ 頸椎",
+        "Cervical discectomy",
+        "31732"
+      ],
+      [
+        "83023C",
+        "椎間盤切除術 － 胸椎",
+        "Thoracic discectomy",
+        "25293"
+      ],
+      [
+        "83024C",
+        "椎間盤切除術 － 腰椎",
+        "Lumbar discectomy",
+        "20550"
+      ],
+      [
+        "64279B",
+        "重行椎間盤切除術：頸椎、胸椎、腰椎",
+        "Revision discectomy (C, T, L)",
+        "14379"
+      ],
+      [
+        "64144B",
+        "脊椎椎體搔爬術或切除術，單節椎體",
+        "Curettage or excision of 1 vertebral body",
+        "8286"
+      ],
+      [
+        "64276B",
+        "脊椎椎體搔爬術或切除術，每多一節椎體",
+        "- Add 1",
+        "4489"
+      ],
+      [
+        "64266B",
+        "脊椎骨全部切除術",
+        "Vertebrectomy (corpectomy)",
+        "15300"
+      ],
+      [
+        "64269B",
+        "脊椎體矯正切骨術(一節)",
+        "Corrective osteotomy for 1 vertebra",
+        "6737"
+      ],
+      [
+        "64270B",
+        "脊椎體矯正切骨術，每多一節",
+        "- Add 1",
+        "3224"
+      ],
+      [
+        "83043B",
+        "脊椎融合術－前融合  1.無固定物(1)≦四節",
+        "Anterior fusion without instrument <= 4",
+        "16580"
+      ],
+      [
+        "83095B",
+        "1.無固定物(2)每增加≦四節",
+        "- Add 1",
+        "8730"
+      ],
+      [
+        "83044B",
+        "脊椎融合術－前融合  2.有固定物(1)≦四節",
+        "Anterior fusion with instrument <= 4",
+        "20511"
+      ],
+      [
+        "83096B",
+        "2.有固定物(2)每增加≦四節",
+        "- Add 1",
+        "12589"
+      ],
+      [
+        "83045B",
+        "脊椎融合術 －後融合 1.無固定物",
+        "Posterior fusion without instrument",
+        "14558"
+      ],
+      [
+        "83046B",
+        "脊椎融合術－後融合  2.有固定物(1)≦六節",
+        "Posterior fusion with instrument <= 6",
+        "20958"
+      ],
+      [
+        "83097B",
+        "2.有固定物(2)每增加≦六節",
+        "- Add <= 6",
+        "15979"
+      ],
+      [
+        "64280B",
+        "重行脊椎後融合術-有固定物",
+        "Posterior fusion with instrument (revision)   *不能記64246B",
+        "21496"
+      ],
+      [
+        "64160B",
+        "脊椎骨折開放性復位術",
+        "Open reduction for spine fracture",
+        "13190"
+      ],
+      [
+        "64246B",
+        "骨內固定物拔除術 － 脊椎",
+        "Remove spine implant",
+        "6000"
+      ],
+      [
+        "62009C",
+        "肌肉或深部組織腫瘤切除術及異物取出術",
+        "Excision of muscle or deep tumor / foreign body",
+        "2290"
+      ],
+      [
+        "64005B",
+        "骨髓炎之死骨切除術或蝶形手術及擴創術 (包括：頭骨、顱骨、股骨、肋骨、脊椎骨)",
+        "Sequestrectomy & debridement for osteomyelitis (spine)   *要留骨頭標本",
+        "6802"
+      ],
+      [
+        "64228B",
+        "區域筋膜切除術",
+        "Regional fasciectomy  *要留fascia標本",
+        "4971"
+      ]
+    ]
+  ]
+}

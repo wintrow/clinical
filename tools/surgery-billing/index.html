@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>手術記帳 · 診間</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600&family=Outfit:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../styles.css" />
+    <link rel="stylesheet" href="billing.css" />
+  </head>
+  <body class="tool-page">
+    <div class="atmosphere" aria-hidden="true">
+      <div class="atmosphere__wash"></div>
+      <div class="atmosphere__grid"></div>
+      <div class="atmosphere__orb atmosphere__orb--a"></div>
+      <div class="atmosphere__orb atmosphere__orb--b"></div>
+    </div>
+
+    <header class="topbar">
+      <a class="topbar__brand" href="../../index.html">診間</a>
+      <nav class="topbar__nav" aria-label="主要導覽">
+        <a href="../../index.html#tools">工具</a>
+        <a href="https://info.nhi.gov.tw/INAE5000/INAE5001S01" target="_blank" rel="noopener"
+          >健保查詢</a
+        >
+      </nav>
+    </header>
+
+    <main class="billing">
+      <header class="billing__intro">
+        <h1>手術記帳</h1>
+        <p class="billing__lead">可搜尋健保署現行支付標準全庫；勾選後自動算 ABB／AAB。</p>
+        <p class="billing__meta" id="data-meta">載入點數資料中…</p>
+      </header>
+
+      <section class="billing__controls" aria-label="搜尋與篩選">
+        <label class="search">
+          <span class="visually-hidden">搜尋</span>
+          <input
+            id="search"
+            type="search"
+            enterkeyhint="search"
+            placeholder="搜尋健保全庫：中文、英文或代碼…"
+            autocomplete="off"
+          />
+        </label>
+        <div class="filters" role="group" aria-label="資料來源">
+          <label class="chip"><input type="radio" name="filter" value="all" checked />全部</label>
+          <label class="chip"><input type="radio" name="filter" value="spine" />Spine</label>
+          <label class="chip"><input type="radio" name="filter" value="opd" />injection</label>
+          <label class="chip"><input type="radio" name="filter" value="830" />NS</label>
+        </div>
+      </section>
+
+      <div class="billing__layout">
+        <section class="panel panel--selected" id="selected-panel" aria-labelledby="selected-title">
+          <div class="panel__head">
+            <h2 id="selected-title">已選 <span id="selected-count">0</span></h2>
+            <button type="button" class="text-btn" id="clear-selection">全部清除</button>
+          </div>
+          <ul class="selected-list" id="selected-list"></ul>
+          <p class="empty-hint" id="selected-empty">尚未勾選。到下方清單點選即可加入。</p>
+        </section>
+
+        <aside class="panel panel--result" aria-labelledby="result-title">
+          <div class="panel__head">
+            <h2 id="result-title">最佳記帳</h2>
+          </div>
+          <div class="picked" id="picked-summary">
+            <p class="picked__empty">勾選後會顯示最高點數組合。</p>
+          </div>
+          <div class="rule-card" id="rule-card" hidden>
+            <p class="rule-card__mode" id="rule-mode"></p>
+            <ol class="rule-card__list" id="rule-list"></ol>
+            <p class="rule-card__total">
+              合計 <strong id="rule-total">0</strong> 點
+            </p>
+          </div>
+        </aside>
+
+        <section class="panel panel--list" aria-labelledby="results-title">
+          <div class="panel__head">
+            <h2 id="results-title">搜尋結果</h2>
+            <p id="results-count">0</p>
+          </div>
+          <ul class="code-list" id="code-list"></ul>
+          <p class="empty-hint" id="list-empty" hidden>沒有符合的項目。</p>
+        </section>
+      </div>
+    </main>
+
+    <div class="dock" id="dock" hidden>
+      <button type="button" class="dock__btn" id="dock-selected">
+        已選 <strong id="dock-count">0</strong>
+      </button>
+      <button type="button" class="dock__btn dock__btn--accent" id="dock-result">
+        合計 <strong id="dock-total">0</strong>
+      </button>
+    </div>
+
+    <footer class="footer">
+      <p>
+        點數來源：健保署開放資料。更新：
+        <code>python scripts/update-billing-codes.py</code>
+      </p>
+    </footer>
+
+    <script src="../../data/billing-codes.js"></script>
+    <script src="billing.js"></script>
+  </body>
+</html>

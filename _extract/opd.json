@@ -1,0 +1,457 @@
+{
+  "paragraphs": [
+    "Ref: 48587151, 40480657"
+  ],
+  "tables": [
+    [
+      [
+        "收費碼",
+        "檢驗名稱",
+        "單價",
+        "科別",
+        ""
+      ],
+      [
+        "Sono",
+        "",
+        "",
+        "",
+        ""
+      ],
+      [
+        "86519005",
+        "Sonogram-soft part",
+        "819",
+        "神經修復",
+        ""
+      ],
+      [
+        "86519007",
+        "US-guidance for needle placem",
+        "1950",
+        "神經修復",
+        ""
+      ],
+      [
+        "15016293",
+        "US-guide Drug inj",
+        "1950",
+        "放射線部",
+        ""
+      ],
+      [
+        "15016294",
+        "US-guided repeat puncture therapy",
+        "1950",
+        "放射線部",
+        ""
+      ],
+      [
+        "89019007",
+        "Sono-guided biopsy/aspiration/in",
+        "1950",
+        "復健醫學部",
+        ""
+      ],
+      [
+        "86319007",
+        "ULTRASONIC GUIDANCE FOR NEEDLE P",
+        "1950",
+        "神經內科",
+        ""
+      ],
+      [
+        "78019007",
+        "SONO-GUIDED-BIOPSY/ASP",
+        "1950",
+        "麻醉部",
+        ""
+      ],
+      [
+        "781865SF",
+        "US-guided 1-2 trigger point inje",
+        "1500",
+        "麻醉部",
+        "自費"
+      ],
+      [
+        "781865SE",
+        "US-guided nerve intervention",
+        "3500",
+        "麻醉部",
+        "自費"
+      ],
+      [
+        "15016296",
+        "US-guided pain control(Self-Pay)",
+        "4500",
+        "放射線部",
+        "自費"
+      ],
+      [
+        "Fluoro",
+        "",
+        "",
+        "",
+        ""
+      ],
+      [
+        "00032026",
+        "FLUOROSCOPY",
+        "260",
+        "共用項目",
+        ""
+      ],
+      [
+        "15012150",
+        "MYELOGRAPHY C-SPINE",
+        "2730",
+        "放射線部",
+        "放射科報告"
+      ],
+      [
+        "15012160",
+        "MYELOGRAPHY T-SPINE",
+        "2730",
+        "放射線部",
+        "放射科報告"
+      ],
+      [
+        "15012170",
+        "MYELOGRAPHY L-SPINE",
+        "2730",
+        "放射線部",
+        "放射科報告"
+      ],
+      [
+        "15012200",
+        "MYELOGRAPHY C + T SPINE",
+        "3685",
+        "放射線部",
+        "放射科報告"
+      ],
+      [
+        "15012210",
+        "MYELOGRAPHY T + L SPINE",
+        "3685",
+        "放射線部",
+        "放射科報告"
+      ],
+      [
+        "781865SG",
+        "Fluoroscope-guided single inject",
+        "5000",
+        "麻醉部",
+        "自費"
+      ],
+      [
+        "781865SH",
+        "Fluoroscope-guided two injection",
+        "6000",
+        "麻醉部",
+        "自費"
+      ],
+      [
+        "781865SI",
+        "Fluoroscope-guided multiple inj",
+        "8000",
+        "麻醉部",
+        "自費"
+      ],
+      [
+        "781865SJ",
+        "Fluoroscope-guided single neur",
+        "6000",
+        "麻醉部",
+        "自費"
+      ],
+      [
+        "781865SK",
+        "Fluoroscope-guided two neuroly",
+        "7000",
+        "麻醉部",
+        "自費"
+      ],
+      [
+        "781865SL",
+        "Fluoroscope-guided multiple ne",
+        "9000",
+        "麻醉部",
+        "自費"
+      ],
+      [
+        "Injection",
+        "",
+        "",
+        "",
+        ""
+      ],
+      [
+        "00088151",
+        "IM INJECTION (SELF PAY)",
+        "35",
+        "共用項目",
+        "自費"
+      ],
+      [
+        "00039005",
+        "INTRAARTICULAR INJECTION",
+        "175.5",
+        "共用項目",
+        ""
+      ],
+      [
+        "00039018",
+        "TENDON INJECTION",
+        "175.5",
+        "共用項目",
+        ""
+      ],
+      [
+        "78039018",
+        "TENDON INJECTION",
+        "175.5",
+        "麻醉部",
+        ""
+      ],
+      [
+        "00039024",
+        "TRIGGER POINT INJECTION",
+        "234",
+        "共用項目",
+        ""
+      ],
+      [
+        "78039024",
+        "TRIGGER POINT INJECTION(ONE)",
+        "234",
+        "麻醉部",
+        ""
+      ],
+      [
+        "70851009",
+        "INTRADERMAL INJECTION- <4cm2",
+        "325",
+        "麻醉部",
+        ""
+      ],
+      [
+        "78047051",
+        "NERVE BLOCK,PREIPHERAL",
+        "494",
+        "麻醉部",
+        "手術紀錄"
+      ],
+      [
+        "80047051",
+        "Nerve block, peripheral",
+        "494",
+        "神經內科",
+        ""
+      ],
+      [
+        "890RH004",
+        "PERIPHERAL NERVE BLOCK(S)",
+        "1467.7",
+        "復健醫學部",
+        ""
+      ],
+      [
+        "890RH006",
+        "PERIPHERAL NERVE BLOCK(C)",
+        "1467.7",
+        "復健醫學部",
+        ""
+      ],
+      [
+        "890RH005",
+        "PERIPHERAL NERVE BLOCK(M)",
+        "1467.7",
+        "復健醫學部",
+        ""
+      ],
+      [
+        "86386568",
+        "Peripheral N.block for PC-1 day",
+        "3188",
+        "麻醉部",
+        "手術紀錄，自費"
+      ],
+      [
+        "78096013",
+        "CAUDAL BLOCK",
+        "1869",
+        "麻醉部",
+        ""
+      ],
+      [
+        "78086515",
+        "CELIAC GANGLION BLOCK",
+        "6000",
+        "麻醉部",
+        ""
+      ],
+      [
+        "78186502",
+        "STELLATE GANGLION BLOCK",
+        "3000",
+        "麻醉部",
+        "自費"
+      ],
+      [
+        "78186515",
+        "CELIAC GANGLION BLOCK (SELF-PAY)",
+        "6000",
+        "麻醉部",
+        "自費"
+      ],
+      [
+        "781865SD",
+        "Intralaminal epidural single inj",
+        "3500",
+        "麻醉部",
+        "自費"
+      ],
+      [
+        "781865SN",
+        "Image-guided disc neucleoplasty",
+        "8190",
+        "麻醉部",
+        "自費"
+      ],
+      [
+        "781865SM",
+        "Image-guided SI joint injection",
+        "4000",
+        "麻醉部",
+        "自費"
+      ],
+      [
+        "85785S22",
+        "Image guided SI joint N. block",
+        "5355",
+        "骨科部",
+        "自費"
+      ],
+      [
+        "85785S23",
+        "Image guided facet joint N. block",
+        "5355",
+        "骨科部",
+        "自費"
+      ],
+      [
+        "Prolotherapy",
+        "",
+        "",
+        "",
+        ""
+      ],
+      [
+        "00039014",
+        "AUTOBLOOD INJECTION",
+        "52",
+        "共用項目",
+        ""
+      ],
+      [
+        "89082S33",
+        "Autologous plat.-rich plasma(PMR",
+        "4000",
+        "復健醫學部",
+        "自費"
+      ],
+      [
+        "85785S12",
+        "Autologous plat.-rich plasma inj",
+        "4000",
+        "骨科部",
+        "自費"
+      ],
+      [
+        "15016295",
+        "US-guide plt.rich plasma inject.",
+        "5500",
+        "放射線部",
+        ""
+      ],
+      [
+        "M7570524",
+        "APHERESIS BLOOD #BX027(SAFETRAN)",
+        "38530",
+        "共用項目",
+        ""
+      ],
+      [
+        "89082S38",
+        "Dextrose prolotherapy small joint",
+        "800",
+        "復健醫學部",
+        "自費"
+      ],
+      [
+        "89082S39",
+        "Dextrose prolotherapy mod.joint",
+        "1500",
+        "復健醫學部",
+        "自費"
+      ],
+      [
+        "89082S40",
+        "Dextrose prolotherapy Comp.joint",
+        "2500",
+        "復健醫學部",
+        "自費"
+      ],
+      [
+        "89082S41",
+        "Dextrose prolotherapy spine&pelv",
+        "2500",
+        "復健醫學部",
+        "自費"
+      ],
+      [
+        "89082S42",
+        "Dextrose prolotherapy C spine&pe",
+        "3500",
+        "復健醫學部",
+        "自費"
+      ],
+      [
+        "89082S43",
+        "Dextrose prolotherapy comprehens",
+        "4500",
+        "復健醫學部",
+        "自費"
+      ],
+      [
+        "RF",
+        "",
+        "",
+        "",
+        ""
+      ],
+      [
+        "86386359",
+        "RADIO FREQUENT COAGULATION",
+        "",
+        "",
+        "手術紀錄"
+      ],
+      [
+        "86583079",
+        "Radiofrequency coagulation",
+        "6968",
+        "神經修復",
+        ""
+      ],
+      [
+        "781865SQ",
+        "Image-guided RF pulsed or a",
+        "11600",
+        "麻醉部",
+        "自費"
+      ]
+    ]
+  ]
+}

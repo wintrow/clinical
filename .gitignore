@@ -1,0 +1,6 @@
+data/nhi-payment.csv
+data/verification-report.json
+.DS_Store
+Thumbs.db
+*.pyc
+__pycache__/
