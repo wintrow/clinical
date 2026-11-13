@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>腦腫瘤分類 · 診間</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600&family=Outfit:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../styles.css" />
+    <link rel="stylesheet" href="brain-tumor.css?v=20251113a" />
+  </head>
+  <body class="tool-page">
+    <div class="atmosphere" aria-hidden="true">
+      <div class="atmosphere__wash"></div>
+      <div class="atmosphere__grid"></div>
+      <div class="atmosphere__orb atmosphere__orb--a"></div>
+      <div class="atmosphere__orb atmosphere__orb--b"></div>
+    </div>
+
+    <header class="topbar">
+      <a class="topbar__brand" href="../../index.html">診間</a>
+      <nav class="topbar__nav" aria-label="主要導覽">
+        <a href="../../index.html#tools">工具</a>
+        <a href="../surgery-billing/index.html">記帳</a>
+        <a href="../scores/index.html">分數</a>
+        <a href="../aed/index.html">AED</a>
+        <a href="./index.html" aria-current="page">腫瘤</a>
+      </nav>
+    </header>
+
+    <main class="bt">
+      <header class="bt__intro">
+        <h1>腦腫瘤分類</h1>
+        <p class="bt__lead">
+          WHO CNS5（2021）腫瘤類型、CNS WHO 分級與關鍵分子標記；含成人／兒童神經膠質瘤、室管膜瘤、髓母細胞瘤流程重點。
+        </p>
+        <p class="bt__meta" id="bt-meta"></p>
+      </header>
+
+      <section class="bt__controls" aria-label="檢視與搜尋">
+        <div class="view-tabs" id="view-tabs" role="tablist" aria-label="檢視"></div>
+        <label class="search">
+          <span class="visually-hidden">搜尋</span>
+          <input id="search" type="search" placeholder="搜尋腫瘤名稱、分子、部位…" autocomplete="off" />
+        </label>
+        <div class="filters" id="filters" role="group" aria-label="大類"></div>
+      </section>
+
+      <section class="panel-block" id="panel-classify" aria-label="WHO 分類">
+        <div id="family-list"></div>
+      </section>
+
+      <section class="panel-block" id="panel-molecular" hidden aria-label="分子標記">
+        <div id="marker-list"></div>
+      </section>
+
+      <section class="panel-block" id="panel-keys" hidden aria-label="臨床重點">
+        <div class="keys-grid keys-grid--pearls" id="pearls"></div>
+        <div class="keys-grid" id="algorithms" style="margin-top: 0.75rem"></div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p id="bt-footer">僅供臨床參考。</p>
+    </footer>
+
+    <script src="brain-tumor-data.js?v=20251113a"></script>
+    <script src="brain-tumor.js?v=20251113a"></script>
+  </body>
+</html>
