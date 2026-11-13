@@ -162,8 +162,6 @@ a {
 
 .hero {
   display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
-  gap: clamp(2rem, 5vw, 4.5rem);
   align-items: end;
   min-height: calc(100svh - 4.2rem);
   padding: clamp(2.5rem, 8vh, 6rem) clamp(1.25rem, 4vw, 3rem)
@@ -236,84 +234,6 @@ a {
 .btn--primary:hover {
   background: var(--accent-deep);
   transform: translateY(-1px);
-}
-
-.hero__visual {
-  opacity: 0;
-  animation: rise 1s var(--ease) 0.35s forwards;
-}
-
-.pulse-panel {
-  position: relative;
-  min-height: 280px;
-  padding: 1.5rem;
-  border: 1px solid var(--line);
-  border-radius: calc(var(--radius) + 4px);
-  background: var(--surface);
-  backdrop-filter: blur(10px);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  overflow: hidden;
-}
-
-.pulse-panel::before {
-  content: "";
-  position: absolute;
-  inset: auto -20% -40% 20%;
-  height: 70%;
-  background: radial-gradient(circle, var(--glow), transparent 65%);
-  pointer-events: none;
-}
-
-.pulse-panel__wave {
-  width: 100%;
-  height: 140px;
-  color: var(--accent);
-}
-
-.pulse-panel__path {
-  stroke-dasharray: 520;
-  stroke-dashoffset: 520;
-  animation: draw-wave 2.2s var(--ease) 0.6s forwards;
-}
-
-.pulse-panel__meta {
-  display: flex;
-  align-items: center;
-  gap: 0.65rem;
-  color: var(--muted);
-  font-family: var(--font-display);
-  font-size: 0.82rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.pulse-panel__dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--accent);
-  box-shadow: 0 0 0 0 rgba(15, 118, 110, 0.35);
-  animation: pulse-dot 2.4s ease-out infinite;
-}
-
-@keyframes draw-wave {
-  to {
-    stroke-dashoffset: 0;
-  }
-}
-
-@keyframes pulse-dot {
-  0% {
-    box-shadow: 0 0 0 0 rgba(15, 118, 110, 0.35);
-  }
-  70% {
-    box-shadow: 0 0 0 10px rgba(15, 118, 110, 0);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(15, 118, 110, 0);
-  }
 }
 
 @keyframes rise {
@@ -431,7 +351,6 @@ a {
 
 @media (max-width: 860px) {
   .hero {
-    grid-template-columns: 1fr;
     align-items: start;
     min-height: auto;
     padding-top: 2.25rem;
@@ -439,10 +358,6 @@ a {
 
   .hero h1 {
     max-width: 14ch;
-  }
-
-  .pulse-panel {
-    min-height: 220px;
   }
 }
 
@@ -457,11 +372,8 @@ a {
   .hero__brand,
   .hero h1,
   .hero__lead,
-  .hero__actions,
-  .hero__visual,
-  .pulse-panel__path {
+  .hero__actions {
     opacity: 1;
     transform: none;
-    stroke-dashoffset: 0;
   }
 }

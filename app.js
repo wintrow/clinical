@@ -26,7 +26,6 @@ const TOOLS = [
 const toolList = document.getElementById("tool-list");
 const emptyState = document.getElementById("empty-state");
 const topbar = document.querySelector(".topbar");
-const toolCountEl = document.querySelector(".pulse-panel__meta span:last-child");
 
 function renderTools() {
   if (!toolList || !emptyState) return;
@@ -35,7 +34,6 @@ function renderTools() {
     toolList.hidden = true;
     toolList.innerHTML = "";
     emptyState.hidden = false;
-    if (toolCountEl) toolCountEl.textContent = "0 tools";
     return;
   }
 
@@ -54,10 +52,6 @@ function renderTools() {
       </li>
     `
     ).join("");
-  }
-
-  if (toolCountEl) {
-    toolCountEl.textContent = `${TOOLS.length} tool${TOOLS.length > 1 ? "s" : ""}`;
   }
 }
 
