@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>抗癲癇藥 · 診間</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600&family=Outfit:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../styles.css" />
+    <link rel="stylesheet" href="aed.css?v=20251113a" />
+  </head>
+  <body class="tool-page">
+    <div class="atmosphere" aria-hidden="true">
+      <div class="atmosphere__wash"></div>
+      <div class="atmosphere__grid"></div>
+      <div class="atmosphere__orb atmosphere__orb--a"></div>
+      <div class="atmosphere__orb atmosphere__orb--b"></div>
+    </div>
+
+    <header class="topbar">
+      <a class="topbar__brand" href="../../index.html">診間</a>
+      <nav class="topbar__nav" aria-label="主要導覽">
+        <a href="../../index.html#tools">工具</a>
+        <a href="../surgery-billing/index.html">記帳</a>
+        <a href="../scores/index.html">分數</a>
+        <a href="./index.html" aria-current="page">AED</a>
+      </nav>
+    </header>
+
+    <main class="aed">
+      <header class="aed__intro">
+        <h1>抗癲癇藥</h1>
+        <p class="aed__lead">
+          Status epilepticus／RSE：時間軸、負荷／維持劑量與副作用。資料整理自 2023 J Neurocrit Care 回顧。
+        </p>
+        <p class="aed__meta" id="aed-meta"></p>
+      </header>
+
+      <section class="panel" aria-labelledby="timeline-title">
+        <div class="panel__head">
+          <h2 id="timeline-title">治療時間軸</h2>
+        </div>
+        <div class="timeline-tabs" id="timeline-tabs" role="tablist"></div>
+        <ol class="timeline" id="timeline"></ol>
+      </section>
+
+      <section class="aed__controls" aria-label="搜尋藥物">
+        <label class="search">
+          <span class="visually-hidden">搜尋</span>
+          <input id="search" type="search" placeholder="搜尋藥物名稱…" autocomplete="off" />
+        </label>
+        <div class="filters" id="filters" role="group" aria-label="線別"></div>
+      </section>
+
+      <ul class="drug-list" id="drug-list"></ul>
+    </main>
+
+    <footer class="footer">
+      <p id="aed-footer">僅供臨床參考。</p>
+    </footer>
+
+    <script src="aed-data.js?v=20251113a"></script>
+    <script src="aed.js?v=20251113a"></script>
+  </body>
+</html>

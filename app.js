@@ -15,6 +15,12 @@ const TOOLS = [
     description: "GCS、ICH、H&H、ISS、APACHE、mRS、GOS 等常用量表。",
     href: "tools/scores/index.html",
   },
+  {
+    id: "aed",
+    name: "抗癲癇藥",
+    description: "SE／RSE 時間軸、負荷與維持劑量、副作用（2023 回顧）。",
+    href: "tools/aed/index.html",
+  },
 ];
 
 const toolList = document.getElementById("tool-list");
