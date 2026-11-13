@@ -2,6 +2,13 @@
  * Status epilepticus / RSE drug reference.
  * Primary source: Shin JW. Management strategies for refractory status epilepticus.
  * J Neurocrit Care 2023;16(2):59-68. Tables 1–2 and Fig. 1 timeline.
+ *
+ * dose.*.kind:
+ *   - perKg: { perKg, unit, max?, round? }
+ *   - perKgRange: { perKgMin, perKgMax, unit, max?, round? }
+ *   - fixed / fixedRange: absolute mg (not weight-based)
+ *   - tier: weight thresholds
+ *   - none: not calculable here
  */
 window.AED_META = {
   source:
@@ -60,6 +67,10 @@ window.AED_DRUGS = [
     maintenance: "可重複一次（依指引）",
     sideEffects: "呼吸抑制、鎮靜、低血壓",
     notes: "PDF 時間軸 1st line；詳細劑量依 AES SE algorithm。",
+    dose: {
+      loading: [{ label: "Loading", kind: "perKg", perKg: 0.1, unit: "mg", max: 4, round: 1 }],
+      maintenance: [{ label: "維持", kind: "none", text: "可依指引重複一次" }],
+    },
   },
   {
     id: "midazolam-im",
@@ -70,10 +81,24 @@ window.AED_DRUGS = [
     mechanism: "Benzodiazepine；增強 GABA 抑制",
     onset: "快速",
     halfLife: "—",
-    loading: "AES 常用：成人／較大兒童 IM 10 mg（約 >40 kg）；較小體重依指引減量",
+    loading: "AES：約 0.2 mg/kg IM（常見上限 10 mg；>40 kg 常用 10 mg）",
     maintenance: "—",
     sideEffects: "呼吸抑制、鎮靜",
     notes: "無 IV 時優先考慮 IM midazolam。",
+    dose: {
+      loading: [
+        {
+          label: "IM Loading",
+          kind: "tier",
+          tiers: [
+            { maxKg: 13, fixed: 5, unit: "mg", note: "較小兒童常見固定劑量（依院內／AES）" },
+            { maxKg: 40, perKg: 0.2, unit: "mg", max: 10, round: 1 },
+            { maxKg: Infinity, fixed: 10, unit: "mg", note: ">40 kg 常用 10 mg" },
+          ],
+        },
+      ],
+      maintenance: [],
+    },
   },
   {
     id: "fosphenytoin",
@@ -87,7 +112,14 @@ window.AED_DRUGS = [
     loading: "20 mg PE/kg IV；最大速率可至 150 mg PE/min（fosphenytoin）",
     maintenance: "100 mg IV q8h",
     sideEffects: "心律不整、低血壓；含 propylene glycol → 代謝性酸中毒",
-    notes: "ESETT：20 mg PE/kg 與 LEV／VPA 療效相近；低血壓／插管相對較多。PHT 與 VPA 會互相升高 free level。",
+    notes: "ESETT：20 mg PE/kg。PHT 與 VPA 會互相升高 free level。",
+    dose: {
+      loading: [
+        { label: "Loading (PE)", kind: "perKg", perKg: 20, unit: "mg PE", round: 0 },
+        { label: "最大輸注速率", kind: "fixed", fixed: 150, unit: "mg PE/min", note: "fosphenytoin" },
+      ],
+      maintenance: [{ label: "Maintenance", kind: "fixed", fixed: 100, unit: "mg q8h" }],
+    },
   },
   {
     id: "levetiracetam",
@@ -101,7 +133,16 @@ window.AED_DRUGS = [
     loading: "1,000–3,000 mg IV，最高可至 4,500 mg；ESETT 常用 60 mg/kg",
     maintenance: "500–1,500 mg IV q12h",
     sideEffects: "需依腎功能調量；躁動／精神疾病史者慎用",
-    notes: "ESETT／兒科試驗支持用於 benzos 失敗後 CSE；較少心血管副作用。",
+    notes: "ESETT 常用 60 mg/kg（上限 4500 mg）。",
+    dose: {
+      loading: [
+        { label: "ESETT Loading", kind: "perKg", perKg: 60, unit: "mg", max: 4500, round: 0 },
+        { label: "常用範圍（固定）", kind: "fixedRange", fixedMin: 1000, fixedMax: 3000, unit: "mg" },
+      ],
+      maintenance: [
+        { label: "Maintenance", kind: "fixedRange", fixedMin: 500, fixedMax: 1500, unit: "mg q12h" },
+      ],
+    },
   },
   {
     id: "valproate",
@@ -114,8 +155,17 @@ window.AED_DRUGS = [
     halfLife: "約 9–16 hr",
     loading: "20–40 mg/kg IV（ESETT 常用 40 mg/kg）",
     maintenance: "500–750 mg IV q8h",
-    sideEffects: "肝毒性（粒線體病尤其危險）、胰臟炎、血小板低下／功能異常、高血氨腦病（需監測 ammonia）",
+    sideEffects: "肝毒性、胰臟炎、血小板異常、高血氨腦病（監測 ammonia）",
     notes: "與 phenytoin 交互使 free level 上升。",
+    dose: {
+      loading: [
+        { label: "Loading 範圍", kind: "perKgRange", perKgMin: 20, perKgMax: 40, unit: "mg", round: 0 },
+        { label: "ESETT 常用", kind: "perKg", perKg: 40, unit: "mg", round: 0 },
+      ],
+      maintenance: [
+        { label: "Maintenance", kind: "fixedRange", fixedMin: 500, fixedMax: 750, unit: "mg q8h" },
+      ],
+    },
   },
   {
     id: "phenobarbital",
@@ -126,10 +176,19 @@ window.AED_DRUGS = [
     mechanism: "延長 GABAA Cl− channel 開啟時間；亦具抗 glutamate 作用",
     onset: "數十分鐘內",
     halfLife: "很長（約 2–5 天）",
-    loading: "20 mg/kg IV；mega-dose：>10 mg/kg/day（腸道或靜脈）",
+    loading: "20 mg/kg IV；mega-dose：>10 mg/kg/day",
     maintenance: "50–100 mg IV q12h",
-    sideEffects: "強鎮靜；血清 >70 µg/mL 可嚴重嗜睡；含 propylene glycol → 酸中毒、心律不整（高累積劑量）；CYP 誘導交互作用多",
-    notes: "可用於 RSE／super RSE；NCSE 可考慮 MDPB。MDPB 時監測血清濃度與心律。",
+    sideEffects: "強鎮靜；血清 >70 µg/mL 可嚴重嗜睡；propylene glycol 風險；CYP 誘導",
+    notes: "MDPB 時監測血清濃度與心律。",
+    dose: {
+      loading: [
+        { label: "Loading", kind: "perKg", perKg: 20, unit: "mg", round: 0 },
+        { label: "Mega-dose 門檻", kind: "perKg", perKg: 10, unit: "mg/day", round: 0, note: ">10 mg/kg/day" },
+      ],
+      maintenance: [
+        { label: "Maintenance", kind: "fixedRange", fixedMin: 50, fixedMax: 100, unit: "mg q12h" },
+      ],
+    },
   },
   {
     id: "lacosamide",
@@ -143,7 +202,11 @@ window.AED_DRUGS = [
     loading: "200–400 mg IV",
     maintenance: "100–200 mg IV q12h",
     sideEffects: "PR 延長、心房心律不整；I–III 度房室傳導阻斷",
-    notes: "PDF／AES 建議可考慮用於 RSE；對電圖上非痙攣發作相對友善，嚴重副作用少於 PHT。",
+    notes: "固定劑量為主（非依體重）。",
+    dose: {
+      loading: [{ label: "Loading", kind: "fixedRange", fixedMin: 200, fixedMax: 400, unit: "mg" }],
+      maintenance: [{ label: "Maintenance", kind: "fixedRange", fixedMin: 100, fixedMax: 200, unit: "mg q12h" }],
+    },
   },
   {
     id: "midazolam-civ",
@@ -157,7 +220,13 @@ window.AED_DRUGS = [
     loading: "0.2 mg/kg",
     maintenance: "0.05–2 mg/kg/hr",
     sideEffects: "呼吸抑制、低血壓；長期使用 tachyphylaxis",
-    notes: "不含 propylene glycol。可與 ketamine 早期併用。麻醉目標以抑制發作為主；通常 24–48 hr 後評估減量。",
+    notes: "不含 propylene glycol。通常 24–48 hr 後評估減量。",
+    dose: {
+      loading: [{ label: "Bolus", kind: "perKg", perKg: 0.2, unit: "mg", round: 1 }],
+      maintenance: [
+        { label: "Infusion", kind: "perKgRange", perKgMin: 0.05, perKgMax: 2, unit: "mg/hr", round: 2 },
+      ],
+    },
   },
   {
     id: "propofol",
@@ -170,8 +239,23 @@ window.AED_DRUGS = [
     halfLife: "4–7 hr（消除；周邊組織蓄積）",
     loading: "1–2 mg/kg",
     maintenance: "30–200 µg/kg/min",
-    sideEffects: "呼吸抑制、低血壓、代謝性酸中毒、胰臟炎；長時間高劑量注意 propofol infusion syndrome",
-    notes: "高脂溶性，延長輸注易周邊蓄積。可與 ketamine 併用以降單藥高劑量副作用。需監測 CK、酸鹼、lactate、血脂等。",
+    sideEffects: "呼吸抑制、低血壓、代謝性酸中毒、胰臟炎；注意 PRIS",
+    notes: "需監測 CK、酸鹼、lactate、血脂等。",
+    dose: {
+      loading: [{ label: "Bolus", kind: "perKgRange", perKgMin: 1, perKgMax: 2, unit: "mg", round: 1 }],
+      maintenance: [
+        { label: "Infusion", kind: "perKgRange", perKgMin: 30, perKgMax: 200, unit: "µg/min", round: 0 },
+        {
+          label: "約合",
+          kind: "perKgRange",
+          perKgMin: 1.8,
+          perKgMax: 12,
+          unit: "mg/hr",
+          round: 1,
+          note: "由 µg/kg/min × 0.06 換算",
+        },
+      ],
+    },
   },
   {
     id: "barbiturates",
@@ -184,8 +268,17 @@ window.AED_DRUGS = [
     halfLife: "Thiopental 3–22 hr；Pentobarbital 15–50 hr",
     loading: "Thiopental 2–7 mg/kg；Pentobarbital 5–15 mg/kg",
     maintenance: "0.5–5 mg/kg/hr",
-    sideEffects: "呼吸抑制、低血壓、心輸出下降、腸阻塞、免疫抑制；propylene glycol 蓄積 → 酸血症、心臟毒性、嚴重低血壓",
-    notes: "可達深昏迷並大幅降低腦代謝；長時間易組織蓄積。",
+    sideEffects: "呼吸抑制、低血壓、心輸出下降、腸阻塞、免疫抑制；propylene glycol 風險",
+    notes: "可達深昏迷並大幅降低腦代謝。",
+    dose: {
+      loading: [
+        { label: "Thiopental bolus", kind: "perKgRange", perKgMin: 2, perKgMax: 7, unit: "mg", round: 0 },
+        { label: "Pentobarbital bolus", kind: "perKgRange", perKgMin: 5, perKgMax: 15, unit: "mg", round: 0 },
+      ],
+      maintenance: [
+        { label: "Infusion", kind: "perKgRange", perKgMin: 0.5, perKgMax: 5, unit: "mg/hr", round: 1 },
+      ],
+    },
   },
   {
     id: "ketamine",
@@ -197,9 +290,16 @@ window.AED_DRUGS = [
     onset: "<30 sec",
     halfLife: "約 2.5 hr",
     loading: "0.5–3 mg/kg",
-    maintenance: "0.1–5 mg/kg/hr（文獻常見起始約 0.2–1 mg/kg/hr，可上調）",
-    sideEffects: "幻覺、交感亢進；罕見心律不整、高血壓、肺水腫、過敏；相對較少呼吸／心血管抑制",
-    notes: "RSE／血流動力不穩者常優先考慮；可早期與 midazolam 或 propofol 併用。部分研究未見明顯 ICP 上升。",
+    maintenance: "0.1–5 mg/kg/hr（文獻常見起始約 0.2–1 mg/kg/hr）",
+    sideEffects: "幻覺、交感亢進；罕見心律不整、高血壓、肺水腫、過敏",
+    notes: "血流動力不穩 RSE 常優先考慮；可早期併用 midazolam／propofol。",
+    dose: {
+      loading: [{ label: "Bolus", kind: "perKgRange", perKgMin: 0.5, perKgMax: 3, unit: "mg", round: 1 }],
+      maintenance: [
+        { label: "Infusion 範圍", kind: "perKgRange", perKgMin: 0.1, perKgMax: 5, unit: "mg/hr", round: 1 },
+        { label: "常見起始", kind: "perKgRange", perKgMin: 0.2, perKgMax: 1, unit: "mg/hr", round: 1 },
+      ],
+    },
   },
   {
     id: "isoflurane",
@@ -213,7 +313,11 @@ window.AED_DRUGS = [
     loading: "未固定 loading；依 end-tidal 濃度",
     maintenance: "約 0.8–2% 滴定至 EEG",
     sideEffects: "心、呼吸抑制；感染風險；長時間使用不良事件",
-    notes: "超 RSE salvage；易床邊依 EEG 滴定，但證據異質且長用受限。",
+    notes: "依濃度滴定，非體重計算。",
+    dose: {
+      loading: [{ label: "Loading", kind: "none", text: "未固定；依 end-tidal" }],
+      maintenance: [{ label: "End-tidal", kind: "none", text: "約 0.8–2% 滴定至 EEG" }],
+    },
   },
   {
     id: "methylprednisolone",
@@ -227,7 +331,11 @@ window.AED_DRUGS = [
     loading: "高劑量類固醇脈衝（依 NORSE consensus／院內方案）",
     maintenance: "依療程遞減",
     sideEffects: "感染、高血糖、精神症狀、消化道潰瘍等",
-    notes: "NORSE/FIRES：約 24 hr 起可啟動 1st line 免疫。",
+    notes: "NORSE/FIRES：約 24 hr 起可啟動 1st line 免疫。脈衝方案依院內，暫不自動換算。",
+    dose: {
+      loading: [{ label: "Loading", kind: "none", text: "依院內／NORSE 脈衝方案" }],
+      maintenance: [],
+    },
   },
   {
     id: "ivig",
@@ -238,10 +346,14 @@ window.AED_DRUGS = [
     mechanism: "免疫調節",
     onset: "天",
     halfLife: "—",
-    loading: "依 NORSE／院內 IVIG 方案",
+    loading: "依 NORSE／院內 IVIG 方案（常見約 2 g/kg 分次）",
     maintenance: "依療程",
     sideEffects: "頭痛、血栓、腎損傷、輸液反應",
-    notes: "與類固醇同為 NORSE 1st line 免疫選項。",
+    notes: "若採總量 2 g/kg，可用下方估算。",
+    dose: {
+      loading: [{ label: "常見總量估算", kind: "perKg", perKg: 2, unit: "g（總量）", round: 1, note: "常分次給予" }],
+      maintenance: [],
+    },
   },
   {
     id: "rituximab",
@@ -255,7 +367,11 @@ window.AED_DRUGS = [
     loading: "依自體免疫腦炎／NORSE 方案",
     maintenance: "依療程",
     sideEffects: "輸注反應、感染、B 細胞耗竭",
-    notes: "抗體媒介（證實或高度疑似 AE）時之 2nd line。",
+    notes: "方案依專科，暫不自動換算固定劑量。",
+    dose: {
+      loading: [{ label: "Loading", kind: "none", text: "依專科／院內方案" }],
+      maintenance: [],
+    },
   },
   {
     id: "anakinra-tocilizumab",
@@ -269,7 +385,11 @@ window.AED_DRUGS = [
     loading: "依 NORSE consensus／專科建議",
     maintenance: "依療程",
     sideEffects: "感染、注射／輸注相關反應、肝功能異常等",
-    notes: "隱源性 NORSE（或一週內無法取得抗體）之 2nd line。",
+    notes: "方案依專科，暫不自動換算。",
+    dose: {
+      loading: [{ label: "Loading", kind: "none", text: "依專科／院內方案" }],
+      maintenance: [],
+    },
   },
 ];
 

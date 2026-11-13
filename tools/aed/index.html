@@ -11,7 +11,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="../../styles.css" />
-    <link rel="stylesheet" href="aed.css?v=20251113a" />
+    <link rel="stylesheet" href="aed.css?v=20251113b" />
   </head>
   <body class="tool-page">
     <div class="atmosphere" aria-hidden="true">
@@ -48,6 +48,17 @@
         <ol class="timeline" id="timeline"></ol>
       </section>
 
+      <section class="weight-bar" aria-label="體重">
+        <label class="weight-field">
+          <span class="weight-field__label">體重</span>
+          <span class="weight-field__input">
+            <input id="weight" type="number" inputmode="decimal" min="1" max="300" step="0.1" placeholder="例如 70" />
+            <span>kg</span>
+          </span>
+        </label>
+        <p class="weight-hint" id="weight-hint">輸入體重後，依 mg/kg 自動換算 loading／infusion</p>
+      </section>
+
       <section class="aed__controls" aria-label="搜尋藥物">
         <label class="search">
           <span class="visually-hidden">搜尋</span>
@@ -63,7 +74,7 @@
       <p id="aed-footer">僅供臨床參考。</p>
     </footer>
 
-    <script src="aed-data.js?v=20251113a"></script>
-    <script src="aed.js?v=20251113a"></script>
+    <script src="aed-data.js?v=20251113b"></script>
+    <script src="aed.js?v=20251113b"></script>
   </body>
 </html>
